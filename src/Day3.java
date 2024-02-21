@@ -2,35 +2,56 @@ public class Day3 {
     public static void main(String[] args) {
         // String input = "Hi, I'm Avish";
         // System.out.println(reverseStringWordWise(input));
-        
-        String message = "aabbc";
-        System.out.println(encode(message));
+
+        // String message = "aabbc";
+        // System.out.println(encode(message));
+
+        String pattern = ")((()";
+        System.out.println(minimumParentheses(pattern));
     }
+
     public static String reverseStringWordWise(String input) {
         String[] str = input.split(" ");
-        int len = str.length-1;
+        int len = str.length - 1;
         StringBuilder build = new StringBuilder();
-        for(int i = len; i >=0; i--){
-            if(i != 0){
+        for (int i = len; i >= 0; i--) {
+            if (i != 0) {
                 build.append(str[i] + " ");
-            }
-            else build.append(str[i]);
+            } else
+                build.append(str[i]);
         }
         return build.toString();
     }
+
     public static String encode(String message) {
-		StringBuilder ans = new StringBuilder();
-		int count;
-		for(int i=0;i<message.length();i++){
-			char ch = message.charAt(i);
-			count = 1;
-			while(i+1<message.length() && ch==message.charAt(i+1)){
-				i++;
-				count++;
-			}
-			ans.append(ch);
-			ans.append(count);
-		}
-		return ans.toString();
-	}
+        StringBuilder ans = new StringBuilder();
+        int count;
+        for (int i = 0; i < message.length(); i++) {
+            char ch = message.charAt(i);
+            count = 1;
+            while (i + 1 < message.length() && ch == message.charAt(i + 1)) {
+                i++;
+                count++;
+            }
+            ans.append(ch);
+            ans.append(count);
+        }
+        return ans.toString();
+    }
+
+    public static int minimumParentheses(String pattern) {
+        int opencount = 0;
+        int closingcount = 0;
+        for (char ch : pattern.toCharArray()) {
+            if (ch == '(') {
+                opencount++;
+            } else if (ch == ')' && opencount > 0) {
+                opencount--;
+
+            } else if (ch == ')') {
+                closingcount++;
+            }
+        }
+        return opencount + closingcount;
+    }
 }
