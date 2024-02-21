@@ -9,8 +9,11 @@ public class Day3 {
         // String pattern = ")((()";
         // System.out.println(minimumParentheses(pattern));
 
-        String s = "0000";
-        System.out.println(makeBeautiful(s));
+        // String s = "0000";
+        // System.out.println(makeBeautiful(s));
+
+        String number = "1221";
+        System.out.println(nextLargestPalindrome(number, number.length()));
     }
 
     public static String reverseStringWordWise(String input) {
@@ -79,5 +82,81 @@ public class Day3 {
             }
         }
         return Math.min(result1, result2);
+    }
+
+    public static String nextLargestPalindrome(String number, int length) {
+
+        char s[] = number.toCharArray();
+
+        // Initializing carry to keep track of the carry forward at the time of
+        // addition.
+        int carry = 1, temp;
+
+        // Loop to add 1 to the number represented by string S.
+
+        for (int i = length - 1; i >= 0; i--) {
+            if ((s[i] - 48) + carry <= 9) {
+                s[i] = (char) ((s[i] - 48) + carry + 48);
+                carry = 0;
+            }
+
+            else {
+                temp = (s[i] - 48 + carry) % 10;
+                s[i] = (char) (temp + 48);
+
+                carry = 1;
+            }
+
+        }
+
+        if (carry != 0) {
+
+            String str = "";
+            for (char c : s)
+                str += c;
+            str = (char) (carry + 48) + str;
+
+            s = str.toCharArray();
+        }
+
+        int i = 0, j = s.length - 1, pos = 0;
+        boolean conditionViolated = false;
+
+        // Converting string s to a palindrome.
+        while (i <= j) {
+            if (s[i] < s[j]) {
+                s[j] = s[i];
+                pos = i;
+                conditionViolated = true;
+            }
+
+            else if (s[i] > s[j]) {
+                s[j] = s[i];
+                conditionViolated = false;
+            }
+
+            else if (conditionViolated && s[i] != '9') {
+                pos = i;
+            }
+
+            i++;
+            j--;
+        }
+
+        // Checking if the condition is violated or not.
+        // Finding the smallest palindrome strictly greater than the input number.
+        if (conditionViolated) {
+
+            s[pos]++;
+            s[s.length - 1 - pos] = s[pos];
+
+            for (int k = pos + 1; k <= (s.length - 1) / 2; k++) {
+                s[s.length - 1 - k] = s[k] = '0';
+            }
+
+        }
+        number = new String(s);
+
+        return number;
     }
 }
