@@ -6,8 +6,11 @@ public class Day3 {
         // String message = "aabbc";
         // System.out.println(encode(message));
 
-        String pattern = ")((()";
-        System.out.println(minimumParentheses(pattern));
+        // String pattern = ")((()";
+        // System.out.println(minimumParentheses(pattern));
+
+        String s = "0000";
+        System.out.println(makeBeautiful(s));
     }
 
     public static String reverseStringWordWise(String input) {
@@ -53,5 +56,28 @@ public class Day3 {
             }
         }
         return opencount + closingcount;
+    }
+
+    public static int makeBeautiful(String str) {
+        int len = str.length();
+        int result1 = 0;
+        int result2 = 0;
+        char arr1[] = new char[len];
+        char arr2[] = new char[len];
+        for (int i = 0; i < len; i++) {
+            if (i % 2 != 0) {
+                arr1[i] = '1';
+                arr2[i] = '0';
+            } else if (i % 2 == 0) {
+                arr1[i] = '0';
+                arr2[i] = '1';
+            }
+            if (str.charAt(i) != arr1[i]) {
+                result1++;
+            } else if (str.charAt(i) != arr2[i]) {
+                result2++;
+            }
+        }
+        return Math.min(result1, result2);
     }
 }
