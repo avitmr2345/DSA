@@ -12,9 +12,12 @@ public class Day4 {
         // inplaceRotate(arr, arr.length);
         // System.out.println(Arrays.deepToString(arr));
 
-        int[][] matrix = { { 1, 0 }, { 2, 7 }, { 3, 0 }, { 4, 8 } };
-        setZeros(matrix);
-        System.out.println(Arrays.deepToString(matrix));
+        // int[][] matrix = { { 1, 0 }, { 2, 7 }, { 3, 0 }, { 4, 8 } };
+        // setZeros(matrix);
+        // System.out.println(Arrays.deepToString(matrix));
+
+        int[][] matrix = { { 1, 2, 3, 4 }, { 14, 15, 16, 5 }, { 13, 20, 17, 6 }, { 12, 19, 18, 7 }, { 11, 10, 9, 8 } };
+        spiralPrint(matrix);
     }
 
     public static Integer coverageOfMatrix(int[][] mat) {
@@ -88,6 +91,37 @@ public class Day4 {
                     matrix[i][j] = 0;
                 }
             }
+        }
+    }
+
+    public static void spiralPrint(int matrix[][]) {
+        if (matrix == null || matrix.length == 0)
+            return;
+        int rowStart = 0;
+        int rowEnd = matrix.length - 1;
+        int colStart = 0;
+        int colEnd = matrix[0].length - 1;
+        while (rowStart <= rowEnd && colStart <= colStart) {
+            for (int j = colStart; j <= colEnd; j++) {
+                System.out.print(matrix[rowStart][j] + " ");
+            }
+            for (int k = rowStart + 1; k <= rowEnd; k++) {
+                System.out.print(matrix[k][colEnd] + " ");
+            }
+            for (int l = colEnd - 1; l >= colStart; l--) {
+                if (rowStart == rowEnd)
+                    break;
+                System.out.print(matrix[rowEnd][l] + " ");
+            }
+            for (int m = rowEnd - 1; m > rowStart; m--) {
+                if (colStart == colEnd)
+                    break;
+                System.out.print(matrix[m][colStart] + " ");
+            }
+            rowStart++;
+            rowEnd--;
+            colStart++;
+            colEnd--;
         }
     }
 }
