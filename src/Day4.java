@@ -8,9 +8,13 @@ public class Day4 {
         // int[][] matrix = { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 8 } };
         // System.out.println(isMatrixSymmetric(matrix));
 
-        int[][] arr = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-        inplaceRotate(arr, arr.length);
-        System.out.println(Arrays.deepToString(arr));
+        // int[][] arr = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        // inplaceRotate(arr, arr.length);
+        // System.out.println(Arrays.deepToString(arr));
+
+        int[][] matrix = { { 1, 0 }, { 2, 7 }, { 3, 0 }, { 4, 8 } };
+        setZeros(matrix);
+        System.out.println(Arrays.deepToString(matrix));
     }
 
     public static Integer coverageOfMatrix(int[][] mat) {
@@ -50,7 +54,6 @@ public class Day4 {
 
     public static void inplaceRotate(int[][] arr, int n) {
         for (int i = 0; i < arr.length; i++) {
-
             for (int j = i; j < arr[0].length; j++) {
                 int temp = arr[j][i];
                 arr[j][i] = arr[i][j];
@@ -58,11 +61,32 @@ public class Day4 {
             }
         }
         for (int i = 0; i < arr[0].length; i++) {
-
             for (int j = 0, k = arr[0].length - 1; j < k; j++, k--) {
                 int temp = arr[j][i];
                 arr[j][i] = arr[k][i];
                 arr[k][i] = temp;
+            }
+        }
+    }
+
+    public static void setZeros(int matrix[][]) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        boolean[] zeroRows = new boolean[rows];
+        boolean[] zeroCols = new boolean[cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 0) {
+                    zeroRows[i] = true;
+                    zeroCols[j] = true;
+                }
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (zeroRows[i] == true || zeroCols[j] == true) {
+                    matrix[i][j] = 0;
+                }
             }
         }
     }
