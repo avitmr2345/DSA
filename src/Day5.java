@@ -11,7 +11,15 @@ public class Day5 {
         // arr.add(2);
         // System.out.println(minElementsToRemove(arr));
 
-        System.out.println(firstNonRepeatingCharacter("aDcadhc"));
+        // System.out.println(firstNonRepeatingCharacter("aDcadhc"));
+
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(1);
+        arr.add(-1);
+        arr.add(4);
+        arr.add(2);
+        arr.add(-2);
+        System.out.println(LongestSubsetWithZeroSum(arr));
     }
 
     public static int minElementsToRemove(ArrayList<Integer> arr) {
@@ -38,5 +46,22 @@ public class Day5 {
             }
         }
         return str.charAt(0);
+    }
+
+    public static int LongestSubsetWithZeroSum(ArrayList<Integer> arr) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int max = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            sum = sum + arr.get(i);
+            if (map.containsKey(sum)) {
+                max = Math.max(max, (i - map.get(sum)));
+            } else if (sum == 0) {
+                max = i + 1;
+            } else {
+                map.put(sum, i);
+            }
+        }
+        return max;
     }
 }
