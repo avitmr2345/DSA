@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -21,13 +22,20 @@ public class Day5 {
         // arr.add(-2);
         // System.out.println(LongestSubsetWithZeroSum(arr));
 
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(5);
-        arr.add(0);
-        arr.add(2);
-        arr.add(3);
-        arr.add(1);
-        System.out.println(subArrayCount(arr, 5));
+        // ArrayList<Integer> arr = new ArrayList<>();
+        // arr.add(5);
+        // arr.add(0);
+        // arr.add(2);
+        // arr.add(3);
+        // arr.add(1);
+        // System.out.println(subArrayCount(arr, 5));
+
+        ArrayList<String> inputStr = new ArrayList<>();
+        inputStr.add("abab");
+        inputStr.add("baba");
+        inputStr.add("aabb");
+        inputStr.add("abbc");
+        System.out.println(getGroupedAnagrams(inputStr, inputStr.size()));
     }
 
     public static int minElementsToRemove(ArrayList<Integer> arr) {
@@ -92,5 +100,22 @@ public class Day5 {
             }
         }
         return ans;
+    }
+
+    public static ArrayList<ArrayList<String>> getGroupedAnagrams(ArrayList<String> inputStr, int n) {
+        if (inputStr.size() == 0) {
+            return new ArrayList<>();
+        }
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        for (String i : inputStr) {
+            char[] chars = i.toCharArray();
+            Arrays.sort(chars);
+            String sortedStr = String.valueOf(chars);
+            if (!map.containsKey(sortedStr)) {
+                map.put(sortedStr, new ArrayList<>());
+            }
+            map.get(sortedStr).add(i);
+        }
+        return new ArrayList<>(map.values());
     }
 }
