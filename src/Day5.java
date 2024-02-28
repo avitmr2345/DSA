@@ -1,14 +1,17 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Day5 {
     public static void main(String[] args) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(1);
-        arr.add(2);
-        arr.add(1);
-        arr.add(2);
-        System.out.println(minElementsToRemove(arr));
+        // ArrayList<Integer> arr = new ArrayList<>();
+        // arr.add(1);
+        // arr.add(2);
+        // arr.add(1);
+        // arr.add(2);
+        // System.out.println(minElementsToRemove(arr));
+
+        System.out.println(firstNonRepeatingCharacter("aDcadhc"));
     }
 
     public static int minElementsToRemove(ArrayList<Integer> arr) {
@@ -19,5 +22,21 @@ public class Day5 {
             set.add(arr.get(i));
         }
         return arr.size() - set.size();
+    }
+
+    public static char firstNonRepeatingCharacter(String str) {
+        HashMap<Character, Integer> hashmap = new HashMap<Character, Integer>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            int number = hashmap.getOrDefault(ch, 0);
+            hashmap.put(ch, number + 1);
+        }
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (hashmap.get(ch).intValue() == 1) {
+                return ch;
+            }
+        }
+        return str.charAt(0);
     }
 }
