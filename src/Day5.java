@@ -13,13 +13,21 @@ public class Day5 {
 
         // System.out.println(firstNonRepeatingCharacter("aDcadhc"));
 
+        // ArrayList<Integer> arr = new ArrayList<>();
+        // arr.add(1);
+        // arr.add(-1);
+        // arr.add(4);
+        // arr.add(2);
+        // arr.add(-2);
+        // System.out.println(LongestSubsetWithZeroSum(arr));
+
         ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(1);
-        arr.add(-1);
-        arr.add(4);
+        arr.add(5);
+        arr.add(0);
         arr.add(2);
-        arr.add(-2);
-        System.out.println(LongestSubsetWithZeroSum(arr));
+        arr.add(3);
+        arr.add(1);
+        System.out.println(subArrayCount(arr, 5));
     }
 
     public static int minElementsToRemove(ArrayList<Integer> arr) {
@@ -63,5 +71,26 @@ public class Day5 {
             }
         }
         return max;
+    }
+
+    public static int subArrayCount(ArrayList<Integer> arr, int k) {
+        HashMap<Long, Integer> hmap = new HashMap<>();
+        int ans = 0;
+        long sum = 0;
+        hmap.put(sum, 1);
+        for (int i = 0; i < arr.size(); i++) {
+            sum = sum + arr.get(i);
+            long rem = sum % k;
+            if (rem < 0) {
+                rem += k;
+            }
+            if (hmap.containsKey(rem)) {
+                ans = ans + hmap.get(rem);
+                hmap.put(rem, hmap.get(rem) + 1);
+            } else {
+                hmap.put(rem, 1);
+            }
+        }
+        return ans;
     }
 }
