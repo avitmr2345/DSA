@@ -1,6 +1,7 @@
 public class Patterns {
     public static void main(String[] args) {
         pattern7(8);
+        pattern8(8);
     }
 
     private static void pattern7(int n) {
@@ -19,4 +20,21 @@ public class Patterns {
         }
     }
 
+    private static void pattern8(int n) {
+        int counter = n;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j >= i) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            for (int k = 1; k < counter; k++) {
+                System.out.print("*");
+            }
+            counter--;
+            System.out.println();
+        }
+    }
 }
