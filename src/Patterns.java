@@ -8,6 +8,7 @@ public class Patterns {
         pattern14(5);
         pattern17(6);
         pattern18(5);
+        pattern19(5);
     }
 
     private static void pattern7(int n) {
@@ -132,6 +133,38 @@ public class Patterns {
         for (int i = 0; i < n; i++) {
             for (char ch = (char) (('A' + n - 1) - i); ch <= (char) ('A' + n - 1); ch++) {
                 System.out.print(ch);
+            }
+            System.out.println();
+        }
+    }
+
+    private static void pattern19(int n) {
+        int spaces = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = n - i; j >= 1; j--) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < spaces; k++) {
+                System.out.print(" ");
+            }
+            spaces += 2;
+            for (int l = n - i; l >= 1; l--) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        spaces = 2 * n - 2;
+        for (int x = 1; x <= n; x++) {
+            for (int j = 1; j <= x; j++) {
+                System.out.print("*");
+            }
+            for (int k = 0; k < spaces; k++) {
+                System.out.print(" ");
+            }
+            spaces -= 2;
+            for (int l = 1; l <= x; l++) {
+                System.out.print("*");
             }
             System.out.println();
         }
