@@ -7,6 +7,7 @@ public class Patterns {
         pattern12(6);
         pattern14(5);
         pattern17(6);
+        pattern18(5);
     }
 
     private static void pattern7(int n) {
@@ -123,6 +124,17 @@ public class Patterns {
                 System.out.print(" ");
             }
             spaces--;
+            System.out.println();
+        }
+    }
+
+    private static void pattern18(int n) {
+        for (int i = 0; i < n; i++) {
+            char c = (char) (64 + n);
+            char char_at_first = (char) (c - i);
+            for (int j = 0; j <= i; j++) {
+                System.out.print((char) (char_at_first + j));
+            }
             System.out.println();
         }
     }
