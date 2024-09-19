@@ -130,10 +130,8 @@ public class Patterns {
 
     private static void pattern18(int n) {
         for (int i = 0; i < n; i++) {
-            char c = (char) (64 + n);
-            char char_at_first = (char) (c - i);
-            for (int j = 0; j <= i; j++) {
-                System.out.print((char) (char_at_first + j));
+            for (char ch = (char) (('A' + n - 1) - i); ch <= (char) ('A' + n - 1); ch++) {
+                System.out.print(ch);
             }
             System.out.println();
         }
