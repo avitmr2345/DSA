@@ -10,6 +10,7 @@ public class Patterns {
         pattern18(5);
         pattern19(5);
         pattern20(6);
+        pattern21(6);
     }
 
     private static void pattern7(int n) {
@@ -191,6 +192,18 @@ public class Patterns {
 
             for (int l = 1; l <= stars; l++) {
                 System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void pattern21(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == 1 || i == n || j == 1 || j == n)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
             }
             System.out.println();
         }
