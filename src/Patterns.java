@@ -11,6 +11,7 @@ public class Patterns {
         pattern19(5);
         pattern20(6);
         pattern21(6);
+        pattern22(6);
     }
 
     private static void pattern7(int n) {
@@ -204,6 +205,29 @@ public class Patterns {
                     System.out.print("*");
                 else
                     System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void pattern22(int n) {
+        int startINdex, endIndex;
+        for (int i = 0; i < 2 * n - 1; i++) {
+            int currentInitialValue = n;
+            startINdex = i;
+            endIndex = 2 * n - 2 - i;
+            for (int j = 0; j < 2 * n - 1; j++) {
+                if (i >= n) {
+                    endIndex = i;
+                    startINdex = 2 * n - 2 - i;
+                }
+                if (j >= startINdex && j <= endIndex) {
+                    System.out.print(currentInitialValue);
+                } else if (j < startINdex && j < (2 * n - 1) / 2) {
+                    System.out.print(currentInitialValue--);
+                } else {
+                    System.out.print(++currentInitialValue);
+                }
             }
             System.out.println();
         }
