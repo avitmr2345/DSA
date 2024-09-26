@@ -1,3 +1,5 @@
+package Striver.Module1;
+
 public class Patterns {
     public static void main(String[] args) {
         pattern7(8);
