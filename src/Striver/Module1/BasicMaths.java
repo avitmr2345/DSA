@@ -6,6 +6,7 @@ public class BasicMaths {
         System.out.println("Number of Digits in N: " + countDigits(N));
         System.out.println("The reverse number is: " + reverseNum(N));
         palindromeCheck(4554);
+        System.out.println(findGCD(20, 15));
     }
 
     static int countDigits(int n) {
@@ -30,5 +31,22 @@ public class BasicMaths {
             System.out.println(n + " is a palindrome");
         } else
             System.out.println(n + " is not a palindrome");
+    }
+
+    public static int findGCD(int a, int b) {
+        while (a > 0 && b > 0) {
+            // subtract b from a and update a
+            if (a > b) {
+                a = a % b;
+            }
+            // subtract a from b and update b
+            else {
+                b = b % a;
+            }
+        }
+        if (a == 0) {
+            return b;
+        }
+        return a;
     }
 }
