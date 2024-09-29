@@ -1,5 +1,7 @@
 package Striver.Module1;
 
+import java.util.ArrayList;
+
 public class BasicMaths {
     public static void main(String[] args) {
         int N = 329823;
@@ -8,6 +10,7 @@ public class BasicMaths {
         palindromeCheck(4554);
         System.out.println(findGCD(20, 15));
         System.out.println(armstrongNumber(371));
+        System.out.println(findDivisors(36));
     }
 
     static int countDigits(int n) {
@@ -62,5 +65,21 @@ public class BasicMaths {
         }
 
         return orig_num == ans ? true : false;
+    }
+
+    public static ArrayList<Integer> findDivisors(int n) {
+        ArrayList<Integer> divisors = new ArrayList<>();
+        int sqrtN = (int) Math.sqrt(n);
+
+        for (int i = 1; i <= sqrtN; ++i) {
+            if (n % i == 0) {
+                divisors.add(i);
+
+                if (i != n / i) {
+                    divisors.add(n / i);
+                }
+            }
+        }
+        return divisors;
     }
 }
