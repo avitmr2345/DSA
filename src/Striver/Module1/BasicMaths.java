@@ -7,6 +7,7 @@ public class BasicMaths {
         System.out.println("The reverse number is: " + reverseNum(N));
         palindromeCheck(4554);
         System.out.println(findGCD(20, 15));
+        System.out.println(armstrongNumber(371));
     }
 
     static int countDigits(int n) {
@@ -48,5 +49,18 @@ public class BasicMaths {
             return b;
         }
         return a;
+    }
+
+    static boolean armstrongNumber(int n) {
+        int power = String.valueOf(n).length();
+        int orig_num = n;
+        int ans = 0;
+        while (n > 0) {
+            int rem = n % 10;
+            ans += Math.pow(rem, power);
+            n /= 10;
+        }
+
+        return orig_num == ans ? true : false;
     }
 }
