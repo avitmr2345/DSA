@@ -11,6 +11,7 @@ public class BasicMaths {
         System.out.println(findGCD(20, 15));
         System.out.println(armstrongNumber(371));
         System.out.println(findDivisors(36));
+        System.out.println(checkPrime(36));
     }
 
     static int countDigits(int n) {
@@ -81,5 +82,20 @@ public class BasicMaths {
             }
         }
         return divisors;
+    }
+
+    static boolean checkPrime(int n) {
+        int count = 0;
+
+        for (int i = 1; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                count++;
+
+                if (i != n / i) {
+                    count++;
+                }
+            }
+        }
+        return count == 2 ? true : false;
     }
 }
