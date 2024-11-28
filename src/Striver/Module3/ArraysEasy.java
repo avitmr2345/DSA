@@ -4,7 +4,10 @@ public class ArraysEasy {
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 4, 7, 7, 5 };
+        SecondLargestSecondSmallest(arr);
+    }
 
+    public static void SecondLargestSecondSmallest(int[] arr) {
         int max = Integer.MIN_VALUE;
         int smax = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
