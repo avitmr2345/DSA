@@ -6,13 +6,15 @@ public class ArraysEasy {
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 4, 7, 7, 5 };
-        SecondLargestSecondSmallest(arr);
+        secondLargestSecondSmallest(arr);
         int[] arr1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         int[] arr2 = { 2, 3, 4, 4, 5, 11, 12 };
-        System.out.println(Union(arr1, arr2, arr1.length, arr2.length));
+        System.out.println(union(arr1, arr2, arr1.length, arr2.length));
+        int[] arr3 = { 1, 2, 3 };
+        missingNumber(arr3, 4);
     }
 
-    public static void SecondLargestSecondSmallest(int[] arr) {
+    public static void secondLargestSecondSmallest(int[] arr) {
         int max = Integer.MIN_VALUE;
         int smax = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
@@ -50,7 +52,7 @@ public class ArraysEasy {
             System.out.println("Second smallest is: " + smin);
     }
 
-    public static ArrayList<Integer> Union(int[] arr1, int[] arr2, int n, int m) {
+    public static ArrayList<Integer> union(int[] arr1, int[] arr2, int n, int m) {
         int i = 0;
         int j = 0;
         ArrayList<Integer> unionArr = new ArrayList<>();
@@ -78,5 +80,17 @@ public class ArraysEasy {
             }
         }
         return unionArr;
+    }
+
+    public static void missingNumber(int[] arr, int N) {
+
+        int s1 = (N * (N + 1)) / 2;
+
+        int s2 = 0;
+        for (int i = 0; i < N - 1; i++) {
+            s2 += arr[i];
+        }
+
+        System.out.println("The missing number is: " + (s1-s2));
     }
 }
