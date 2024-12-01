@@ -14,6 +14,8 @@ public class ArraysEasy {
         missingNumber(arr3, 4);
         int[] arr4 = { 1, 1, 0, 1, 1, 1 };
         System.out.println("The max consecutive count is: " + maxConsecutive(arr4));
+        int[] arr5 = { 4, 1, 2, 1, 2 };
+        System.out.println(getSingleElement(arr5));
     }
 
     public static void secondLargestSecondSmallest(int[] arr) {
@@ -109,5 +111,13 @@ public class ArraysEasy {
         }
         max = Math.max(max, count);
         return max;
+    }
+
+    private static int getSingleElement(int[] arr) {
+        int xor = 0;
+        for (int i = 0; i < arr.length; i++) {
+            xor = xor ^ arr[i]; // a ^ a = 0 and 0 ^ a = a
+        }
+        return xor;
     }
 }
