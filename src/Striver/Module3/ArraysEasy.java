@@ -15,7 +15,9 @@ public class ArraysEasy {
         int[] arr4 = { 1, 1, 0, 1, 1, 1 };
         System.out.println("The max consecutive count is: " + maxConsecutive(arr4));
         int[] arr5 = { 4, 1, 2, 1, 2 };
-        System.out.println(getSingleElement(arr5));
+        System.out.println("The single element present in array is: " + getSingleElement(arr5));
+        int[] arr6 = { 2, 3, 5, 1, 9 };
+        System.out.println("The longest subarray size is: " + longestSubarraySum(arr6, 10));
     }
 
     public static void secondLargestSecondSmallest(int[] arr) {
@@ -119,5 +121,29 @@ public class ArraysEasy {
             xor = xor ^ arr[i]; // a ^ a = 0 and 0 ^ a = a
         }
         return xor;
+    }
+
+    private static int longestSubarraySum(int[] arr, long k) {
+        // sliding window approach with two pointers to find the longest subarray with a
+        // sum equal to k
+        int left = 0, right = 0;
+        long sum = arr[0];
+        int maxLen = 0;
+        while (right < arr.length) {
+
+            while (left <= right && sum > k) {
+                sum -= arr[left];
+                left++;
+            }
+
+            if (sum == k) {
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+
+            right++;
+            if (right < arr.length)
+                sum += arr[right];
+        }
+        return maxLen;
     }
 }
