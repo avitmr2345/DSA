@@ -1,5 +1,6 @@
 package Striver.Module3;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -8,7 +9,9 @@ public class ArraysMedium {
         int[] arr = { 2, 6, 5, 8, 11 };
         int target = 14;
         System.out.println(Arrays.toString(twoSum(arr, target)));
-
+        ArrayList<Integer> arr2 = new ArrayList<>(Arrays.asList(new Integer[] { 0, 2, 1, 2, 0, 1 }));
+        sortArray(arr2);
+        System.out.println(arr2);
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -39,8 +42,35 @@ public class ArraysMedium {
         // left++;
         // else
         // right--;
-        // }                                                                                                                                        
+        // }
         // return "NO";
     }
 
+    public static void sortArray(ArrayList<Integer> arr) {
+        // using Dutch National Flag algorithm
+        int low = 0, mid = 0, high = arr.size() - 1;
+
+        while (mid <= high) {
+            if (arr.get(mid) == 0) {
+                // swapping arr[low] and arr[mid]
+                int temp = arr.get(low);
+                arr.set(low, arr.get(mid));
+                arr.set(mid, temp);
+
+                low++;
+                mid++;
+
+            } else if (arr.get(mid) == 1) {
+                mid++;
+
+            } else {
+                // swapping arr[mid] and arr[high]
+                int temp = arr.get(mid);
+                arr.set(mid, arr.get(high));
+                arr.set(high, temp);
+
+                high--;
+            }
+        }
+    }
 }
