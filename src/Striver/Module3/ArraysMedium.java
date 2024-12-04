@@ -16,6 +16,8 @@ public class ArraysMedium {
         System.out.println("The majority element is: " + majorityElement(arr3));
         int[] arr4 = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
         System.out.println("The maximum subarray sum is: " + maxSubarraySum(arr4, arr4.length));
+        int[] profit = { 7, 1, 5, 3, 6, 4 };
+        maxProfit(profit);
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -126,5 +128,15 @@ public class ArraysMedium {
             max = 0;
 
         return max;
+    }
+
+    public static void maxProfit(int[] arr) {
+        int profitMax = 0;
+        int minPrice = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            minPrice = Math.min(minPrice, arr[i]);
+            profitMax = Math.max(profitMax, arr[i] - minPrice);
+        }
+        System.out.println("The max profit will be: " + profitMax);
     }
 }
