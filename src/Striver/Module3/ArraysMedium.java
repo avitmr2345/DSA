@@ -12,6 +12,8 @@ public class ArraysMedium {
         ArrayList<Integer> arr2 = new ArrayList<>(Arrays.asList(new Integer[] { 0, 2, 1, 2, 0, 1 }));
         sortArray(arr2);
         System.out.println(arr2);
+        int[] arr3 = { 2, 2, 1, 1, 1, 2, 2 };
+        System.out.println("The majority element is: " + majorityElement(arr3));
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -72,5 +74,32 @@ public class ArraysMedium {
                 high--;
             }
         }
+    }
+
+    public static int majorityElement(int[] arr) {
+        // Moore’s Voting Algorithm
+        int count = 0;
+        int element = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (count == 0) {
+                count = 1;
+                element = arr[i];
+            } else if (element == arr[i])
+                count++;
+            else
+                count--;
+        }
+
+        // checking if the stored element is the majority element
+        int count1 = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == element)
+                count1++;
+        }
+
+        if (count1 > (arr.length / 2))
+            return element;
+
+        return -1;
     }
 }
