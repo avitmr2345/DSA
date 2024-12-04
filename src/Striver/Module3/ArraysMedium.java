@@ -14,6 +14,8 @@ public class ArraysMedium {
         System.out.println(arr2);
         int[] arr3 = { 2, 2, 1, 1, 1, 2, 2 };
         System.out.println("The majority element is: " + majorityElement(arr3));
+        int[] arr4 = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+        System.out.println("The maximum subarray sum is: " + maxSubarraySum(arr4, arr4.length));
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -101,5 +103,28 @@ public class ArraysMedium {
             return element;
 
         return -1;
+    }
+
+    public static long maxSubarraySum(int[] arr, int n) {
+        // Kadane's Algorithm
+        long max = Long.MIN_VALUE;
+        long sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+
+            if (sum > max) {
+                max = sum;
+            }
+
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+
+        if (max < 0)
+            max = 0;
+
+        return max;
     }
 }
