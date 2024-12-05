@@ -2,6 +2,7 @@ package Striver.Module3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class ArraysMedium {
@@ -18,6 +19,8 @@ public class ArraysMedium {
         System.out.println("The maximum subarray sum is: " + maxSubarraySum(arr4, arr4.length));
         int[] profit = { 7, 1, 5, 3, 6, 4 };
         maxProfit(profit);
+        ArrayList<Integer> arr5 = new ArrayList<>(Arrays.asList(1, 2, -4, -5));
+        System.out.println(rearrangeBySign(arr5));
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -138,5 +141,21 @@ public class ArraysMedium {
             profitMax = Math.max(profitMax, arr[i] - minPrice);
         }
         System.out.println("The max profit will be: " + profitMax);
+    }
+
+    public static ArrayList<Integer> rearrangeBySign(ArrayList<Integer> A) {
+        int posIndex = 0, negIndex = 1;
+        ArrayList<Integer> ans = new ArrayList<>(Collections.nCopies(A.size(), 0));
+
+        for (int i = 0; i < A.size(); i++) {
+            if (A.get(i) < 0) {
+                ans.set(negIndex, A.get(i));
+                negIndex += 2;
+            } else {
+                ans.set(posIndex, A.get(i));
+                posIndex += 2;
+            }
+        }
+        return ans;
     }
 }
