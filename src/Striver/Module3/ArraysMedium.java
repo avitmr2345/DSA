@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class ArraysMedium {
     public static void main(String args[]) {
@@ -21,6 +22,8 @@ public class ArraysMedium {
         maxProfit(profit);
         ArrayList<Integer> arr5 = new ArrayList<>(Arrays.asList(1, 2, -4, -5));
         System.out.println(rearrangeBySign(arr5));
+        List<Integer> arr6 = Arrays.asList(new Integer[] { 1, 3, 2 });
+        System.out.println(nextGreaterPermutation(arr6));
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -157,5 +160,34 @@ public class ArraysMedium {
             }
         }
         return ans;
+    }
+
+    public static List<Integer> nextGreaterPermutation(List<Integer> arr) {
+        int ind = -1;
+        for (int i = arr.size() - 2; i >= 0; i--) {
+            if (arr.get(i) < arr.get(i + 1)) {
+                ind = i;
+                break;
+            }
+        }
+
+        if (ind == -1) {
+            Collections.reverse(arr);
+            return arr;
+        }
+
+        for (int i = arr.size() - 1; i > ind; i--) {
+            if (arr.get(i) > arr.get(ind)) {
+                int tmp = arr.get(i);
+                arr.set(i, arr.get(ind));
+                arr.set(ind, tmp);
+                break;
+            }
+        }
+
+        List<Integer> sublist = arr.subList(ind + 1, arr.size());
+        Collections.reverse(sublist);
+
+        return arr;
     }
 }
