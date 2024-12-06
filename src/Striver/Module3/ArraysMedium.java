@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ArraysMedium {
     public static void main(String args[]) {
@@ -28,6 +30,8 @@ public class ArraysMedium {
         ArrayList<Integer> ans = printLeaders(arr7, arr7.length);
         Collections.sort(ans, Collections.reverseOrder());
         System.out.println(ans);
+        int[] arr8 = { 100, 200, 1, 2, 3, 4 };
+        System.out.println(longestSuccessiveElements(arr8));
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -206,5 +210,31 @@ public class ArraysMedium {
                 max = arr[i];
             }
         return ans;
+    }
+
+    public static int longestSuccessiveElements(int[] arr) {
+        int n = arr.length;
+        if (n == 0)
+            return 0;
+
+        int longest = 1;
+        Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < n; i++) {
+            set.add(arr[i]);
+        }
+
+        for (int it : set) {
+            if (!set.contains(it - 1)) {
+                int cnt = 1;
+                int x = it;
+                while (set.contains(x + 1)) {
+                    x++;
+                    cnt++;
+                }
+                longest = Math.max(longest, cnt);
+            }
+        }
+        return longest;
     }
 }
