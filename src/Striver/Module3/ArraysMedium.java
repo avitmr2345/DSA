@@ -24,6 +24,10 @@ public class ArraysMedium {
         System.out.println(rearrangeBySign(arr5));
         List<Integer> arr6 = Arrays.asList(new Integer[] { 1, 3, 2 });
         System.out.println(nextGreaterPermutation(arr6));
+        int[] arr7 = { 10, 22, 12, 3, 0, 6 };
+        ArrayList<Integer> ans = printLeaders(arr7, arr7.length);
+        Collections.sort(ans, Collections.reverseOrder());
+        System.out.println(ans);
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -189,5 +193,18 @@ public class ArraysMedium {
         Collections.reverse(sublist);
 
         return arr;
+    }
+
+    public static ArrayList<Integer> printLeaders(int[] arr, int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int max = arr[n - 1];
+        ans.add(arr[n - 1]);
+
+        for (int i = n - 2; i >= 0; i--)
+            if (arr[i] > max) {
+                ans.add(arr[i]);
+                max = arr[i];
+            }
+        return ans;
     }
 }
