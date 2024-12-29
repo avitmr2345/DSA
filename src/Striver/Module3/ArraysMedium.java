@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class ArraysMedium {
@@ -43,6 +44,8 @@ public class ArraysMedium {
         System.out.println(Arrays.deepToString(arr9));
         int[][] arr10 = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
         System.out.println(printSpiral(arr10));
+        int[] arr11 = { 3, 1, 2, 4 };
+        System.out.println(findAllSubarraysWithGivenSum(arr11, 6));
     }
 
     public static int[] twoSum(int[] arr, int target) {
@@ -324,5 +327,23 @@ public class ArraysMedium {
             }
         }
         return ans;
+    }
+
+    public static int findAllSubarraysWithGivenSum(int arr[], int k) {
+        int n = arr.length;
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+        int preSum = 0, cnt = 0;
+
+        mpp.put(0, 1);
+        for (int i = 0; i < n; i++) {
+            preSum += arr[i];
+
+            int remove = preSum - k;
+
+            cnt += mpp.getOrDefault(remove, 0);
+
+            mpp.put(preSum, mpp.getOrDefault(preSum, 0) + 1);
+        }
+        return cnt;
     }
 }
