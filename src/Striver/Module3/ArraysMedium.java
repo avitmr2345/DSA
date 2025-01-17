@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class ArraysMedium {
@@ -332,7 +331,7 @@ public class ArraysMedium {
     public static int findAllSubarraysWithGivenSum(int arr[], int k) {
         int n = arr.length;
         HashMap<Integer, Integer> mpp = new HashMap<>();
-        int preSum = 0, cnt = 0;
+        int preSum = 0, count = 0;
 
         mpp.put(0, 1);
         for (int i = 0; i < n; i++) {
@@ -340,10 +339,10 @@ public class ArraysMedium {
 
             int remove = preSum - k;
 
-            cnt += mpp.getOrDefault(remove, 0);
+            count += mpp.getOrDefault(remove, 0);
 
             mpp.put(preSum, mpp.getOrDefault(preSum, 0) + 1);
         }
-        return cnt;
+        return count;
     }
 }
