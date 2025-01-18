@@ -6,6 +6,7 @@ public class BS_1D {
         System.out.println(upperBound(new int[] { 3, 5, 8, 9, 15, 19 }, 7));
         System.out.println(searchInsert(new int[] { 1, 2, 4, 7 }, 6));
         findFloor(new int[] { 3, 4, 4, 7, 8, 10 }, 5);
+        System.out.println(lastOccurence(new int[] { 3, 4, 13, 13, 13, 20, 40 }, 13));
     }
 
     public static int lowerBound(int[] arr, int x) {
@@ -84,5 +85,24 @@ public class BS_1D {
             }
         }
         System.out.println(floor + " " + ceiling);
+    }
+
+    public static int lastOccurence(int[] arr, int target) {
+        int index = -1;
+        int s = 0, e = arr.length - 1;
+
+        while (s <= e) {
+            int mid = (s + e) / 2;
+
+            if (target == arr[mid]) {
+                index = mid;
+                s = mid + 1;
+            } else if (target > arr[mid]) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+        return index;
     }
 }
