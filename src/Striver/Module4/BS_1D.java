@@ -9,6 +9,7 @@ public class BS_1D {
         System.out.println(lastOccurrence(new int[] { 3, 4, 13, 13, 13, 20, 40 }, 13));
         System.out.println(countOccurrence(new int[] { 2, 2, 3, 3, 3, 3, 4 }, 1));
         System.out.println(searchElementRotatedArray(new int[] { 4, 5, 6, 7, 0, 1, 2, 3 }, 0));
+        System.out.println(searchElementRotatedArray2(new int[] { 3, 1, 2, 3, 3, 3, 3 }, 2));
     }
 
     public static int lowerBound(int[] arr, int x) {
@@ -167,5 +168,36 @@ public class BS_1D {
             }
         }
         return -1;
+    }
+
+    public static boolean searchElementRotatedArray2(int[] arr, int target) {
+        int s = 0, e = arr.length - 1;
+
+        while (s <= e) {
+            int mid = (s + e) / 2;
+
+            if (target == arr[mid]) {
+                return true;
+            }
+
+            if (arr[s] == arr[mid] && arr[mid] == arr[e]) {
+                s++;
+                e--;
+                continue;
+            }
+
+            if (arr[s] <= arr[mid]) {
+                if (target >= arr[s] && target <= arr[mid])
+                    e = mid - 1;
+                else
+                    s = mid + 1;
+            } else {
+                if (target >= arr[mid] && target <= arr[e])
+                    s = mid + 1;
+                else
+                    e = mid - 1;
+            }
+        }
+        return false;
     }
 }
