@@ -12,6 +12,7 @@ public class BS_1D {
         System.out.println(searchElementRotatedArray2(new int[] { 3, 1, 2, 3, 3, 3, 3 }, 2));
         System.out.println(minElementRotatedArray(new int[] { 4, 5, 6, 7, 0, 1, 2, 3 }));
         System.out.println(findRotatedArrayNumber(new int[] { 4, 5, 6, 7, 0, 1, 2, 3 }));
+        System.out.println(findSingleElement(new int[] { 1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6 }));
     }
 
     public static int lowerBound(int[] arr, int x) {
@@ -250,5 +251,30 @@ public class BS_1D {
             }
         }
         return index;
+    }
+
+    public static int findSingleElement(int[] arr) {
+        int s = 0, e = arr.length - 1;
+        int index = -1;
+
+        while (s <= e) {
+            int mid = (s + e) / 2;
+
+            if (mid % 2 != 0) {
+                if (mid > 0 && arr[mid - 1] == arr[mid]) {
+                    s = mid + 1;
+                } else {
+                    e = mid - 1;
+                }
+            } else {
+                if (mid < arr.length - 1 && arr[mid] == arr[mid + 1]) {
+                    s = mid + 2;
+                } else {
+                    index = mid;
+                    e = mid - 1;
+                }
+            }
+        }
+        return arr[index];
     }
 }
