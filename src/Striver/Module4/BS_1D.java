@@ -10,6 +10,7 @@ public class BS_1D {
         System.out.println(countOccurrence(new int[] { 2, 2, 3, 3, 3, 3, 4 }, 1));
         System.out.println(searchElementRotatedArray(new int[] { 4, 5, 6, 7, 0, 1, 2, 3 }, 0));
         System.out.println(searchElementRotatedArray2(new int[] { 3, 1, 2, 3, 3, 3, 3 }, 2));
+        System.out.println(minElementRotatedArray(new int[] { 4, 5, 6, 7, 0, 1, 2, 3 }));
     }
 
     public static int lowerBound(int[] arr, int x) {
@@ -199,5 +200,31 @@ public class BS_1D {
             }
         }
         return false;
+    }
+
+    public static int minElementRotatedArray(int[] arr) {
+        int s = 0, e = arr.length - 1;
+        int min = Integer.MAX_VALUE;
+
+        while (s <= e) {
+            int mid = (s + e) / 2;
+
+            if (arr[s] <= arr[e]) {
+                if (arr[s] < min)
+                    min = arr[s];
+                break;
+            }
+
+            if (arr[s] <= arr[mid]) {
+                if (arr[s] < min)
+                    min = arr[s];
+                s = mid + 1;
+            } else {
+                if (arr[mid] < min)
+                    min = arr[mid];
+                e = mid - 1;
+            }
+        }
+        return min;
     }
 }
