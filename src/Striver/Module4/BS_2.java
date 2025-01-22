@@ -4,6 +4,7 @@ public class BS_2 {
     public static void main(String[] args) {
         System.out.println(findSquareRoot(28));
         System.out.println(findNthRoot(27, 3));
+        System.out.println(eatBananas(new int[] { 7, 15, 6, 3 }, 8));
     }
 
     public static long findSquareRoot(long n) {
@@ -51,5 +52,31 @@ public class BS_2 {
             }
         }
         return -1;
+    }
+
+    public static int eatBananas(int[] arr, int hours) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        int s = 1, e = max;
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            int totalHours = 0;
+
+            for (int i = 0; i < arr.length; i++) {
+                totalHours += Math.ceil((double) arr[i] / (double) mid);
+            }
+
+            if (totalHours <= hours) {
+                e = mid - 1;
+            } else {
+                s = mid + 1;
+            }
+        }
+        return s;
     }
 }
