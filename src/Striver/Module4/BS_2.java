@@ -5,6 +5,7 @@ public class BS_2 {
         System.out.println(findSquareRoot(28));
         System.out.println(findNthRoot(27, 3));
         System.out.println(eatBananas(new int[] { 7, 15, 6, 3 }, 8));
+        System.out.println(makeBouquets(new int[] { 7, 7, 7, 7, 13, 11, 12, 7 }, 2, 3) + " days");
     }
 
     public static long findSquareRoot(long n) {
@@ -78,5 +79,49 @@ public class BS_2 {
             }
         }
         return s;
+    }
+
+    public static int makeBouquets(int[] arr, int bouquets, int roses) {
+        if (arr.length < bouquets * roses)
+            return -1;
+
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+
+        int s = min, e = max;
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            int count = 0;
+            int completedBouquets = 0;
+
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] <= mid) {
+                    count++;
+                } else
+                    count = 0;
+
+                if (count == roses) {
+                    completedBouquets++;
+                    count = 0;
+                }
+            }
+
+            if (completedBouquets == bouquets) {
+                return mid;
+            } else if (completedBouquets < bouquets) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+        return -1;
     }
 }
