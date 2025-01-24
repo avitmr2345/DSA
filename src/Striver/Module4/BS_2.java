@@ -7,6 +7,7 @@ public class BS_2 {
         System.out.println(eatBananas(new int[] { 7, 15, 6, 3 }, 8));
         System.out.println(makeBouquets(new int[] { 7, 7, 7, 7, 13, 11, 12, 7 }, 2, 3) + " days");
         System.out.println(findSmallestDivisor(new int[] { 1, 2, 3, 4, 5 }, 9));
+        System.out.println(shipPackages(new int[] { 5, 4, 5, 2, 3, 4, 5, 6 }, 5) + " is the least weight capacity");
     }
 
     public static long findSquareRoot(long n) {
@@ -145,6 +146,41 @@ public class BS_2 {
             }
 
             if (count <= limit) {
+                e = mid - 1;
+            } else {
+                s = mid + 1;
+            }
+        }
+        return s;
+    }
+
+    public static int shipPackages(int[] arr, int days) {
+        int s = Integer.MIN_VALUE, e = 0;
+        for (int i = 0; i < arr.length; i++) {
+            e += arr[i];
+            if (arr[i] > s) {
+                s = arr[i];
+            }
+        }
+
+        if (days == 1)
+            return e;
+
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            int load = 0;
+            int completedDays = 1;
+
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] + load > mid) {
+                    completedDays++;
+                    load = arr[i];
+                } else {
+                    load += arr[i];
+                }
+            }
+
+            if (completedDays <= days) {
                 e = mid - 1;
             } else {
                 s = mid + 1;
