@@ -6,6 +6,7 @@ public class BS_2 {
         System.out.println(findNthRoot(27, 3));
         System.out.println(eatBananas(new int[] { 7, 15, 6, 3 }, 8));
         System.out.println(makeBouquets(new int[] { 7, 7, 7, 7, 13, 11, 12, 7 }, 2, 3) + " days");
+        System.out.println(findSmallestDivisor(new int[] { 1, 2, 3, 4, 5 }, 9));
     }
 
     public static long findSquareRoot(long n) {
@@ -123,5 +124,32 @@ public class BS_2 {
             }
         }
         return -1;
+    }
+
+    public static int findSmallestDivisor(int[] arr, int limit) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        int s = 1, e = max;
+
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            int count = 0;
+
+            for (int i = 0; i < arr.length; i++) {
+                count += Math.ceil((double) arr[i] / (double) mid);
+            }
+
+            if (count <= limit) {
+                e = mid - 1;
+            } else {
+                s = mid + 1;
+            }
+        }
+        return s;
     }
 }
