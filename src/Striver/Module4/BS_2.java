@@ -8,6 +8,7 @@ public class BS_2 {
         System.out.println(makeBouquets(new int[] { 7, 7, 7, 7, 13, 11, 12, 7 }, 2, 3) + " days");
         System.out.println(findSmallestDivisor(new int[] { 1, 2, 3, 4, 5 }, 9));
         System.out.println(shipPackages(new int[] { 5, 4, 5, 2, 3, 4, 5, 6 }, 5) + " is the least weight capacity");
+        System.out.println(findKthMissingNumber(new int[] { 4, 7, 9, 10 }, 4));
     }
 
     public static long findSquareRoot(long n) {
@@ -187,5 +188,21 @@ public class BS_2 {
             }
         }
         return s;
+    }
+
+    public static int findKthMissingNumber(int[] arr, int k) { // #
+        int s = 0, e = arr.length - 1;
+
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            int missing = arr[mid] - (mid + 1);
+
+            if (missing < k) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+        return k + e + 1;
     }
 }
