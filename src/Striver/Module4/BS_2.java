@@ -1,5 +1,7 @@
 package Striver.Module4;
 
+import java.util.Arrays;
+
 public class BS_2 {
     public static void main(String[] args) {
         System.out.println(findSquareRoot(28));
@@ -9,6 +11,7 @@ public class BS_2 {
         System.out.println(findSmallestDivisor(new int[] { 1, 2, 3, 4, 5 }, 9));
         System.out.println(shipPackages(new int[] { 5, 4, 5, 2, 3, 4, 5, 6 }, 5) + " is the least weight capacity");
         System.out.println(findKthMissingNumber(new int[] { 4, 7, 9, 10 }, 4));
+        System.out.println(aggressiveCows(new int[] { 0, 3, 4, 7, 10, 9 }, 4));
     }
 
     public static long findSquareRoot(long n) {
@@ -204,5 +207,34 @@ public class BS_2 {
             }
         }
         return k + e + 1;
+    }
+
+    public static boolean canWePlace(int[] stalls, int dist, int cows) {
+        int cntCows = 1;
+        int lastPlacedCow = stalls[0];
+        for (int i = 1; i < stalls.length; i++) {
+            if (stalls[i] - lastPlacedCow >= dist) {
+                cntCows++;
+                lastPlacedCow = stalls[i];
+            }
+            if (cntCows >= cows)
+                return true;
+        }
+        return false;
+    }
+
+    public static int aggressiveCows(int[] stalls, int k) { // #
+        Arrays.sort(stalls);
+
+        int low = 1, high = stalls[stalls.length - 1] - stalls[0];
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (canWePlace(stalls, mid, k) == true) {
+                low = mid + 1;
+            } else
+                high = mid - 1;
+        }
+        return high;
     }
 }
