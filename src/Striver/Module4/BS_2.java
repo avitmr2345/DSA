@@ -15,6 +15,7 @@ public class BS_2 {
         System.out.println(findKthMissingNumber(new int[] { 4, 7, 9, 10 }, 4));
         System.out.println(aggressiveCows(new int[] { 0, 3, 4, 7, 10, 9 }, 4));
         System.out.println(findPages(new ArrayList<>(Arrays.asList(25, 46, 28, 49, 24)), 5, 4));
+        System.out.println(findMinimizedLargestSum(new int[] { 1, 2, 3, 4, 5 }, 3));
     }
 
     public static long findSquareRoot(long n) {
@@ -266,6 +267,41 @@ public class BS_2 {
             int mid = (low + high) / 2;
             int students = countStudents(arr, mid);
             if (students > m) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+
+    public static int countPartitions(int[] arr, int maxSum) {
+        int partitions = 1;
+        long sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (sum + arr[i] <= maxSum) {
+                sum += arr[i];
+            } else {
+                partitions++;
+                sum = arr[i];
+            }
+        }
+        return partitions;
+    }
+
+    public static int findMinimizedLargestSum(int[] arr, int k) {
+        int low = arr[0];
+        int high = 0;
+        for (int i = 0; i < arr.length; i++) {
+            low = Math.max(arr[i], low);
+            high += arr[i];
+        }
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int partitions = countPartitions(arr, mid);
+            if (partitions > k) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
