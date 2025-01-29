@@ -16,6 +16,7 @@ public class BS_2 {
         System.out.println(aggressiveCows(new int[] { 0, 3, 4, 7, 10, 9 }, 4));
         System.out.println(findPages(new ArrayList<>(Arrays.asList(25, 46, 28, 49, 24)), 5, 4));
         System.out.println(findMinimizedLargestSum(new int[] { 1, 2, 3, 4, 5 }, 3));
+        System.out.println(paintersPartition(new int[] { 10, 20, 30, 40 }, 2));
     }
 
     public static long findSquareRoot(long n) {
@@ -302,6 +303,41 @@ public class BS_2 {
             int mid = (low + high) / 2;
             int partitions = countPartitions(arr, mid);
             if (partitions > k) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+
+    public static int countPainters(int[] arr, int time) {
+        int painters = 1;
+        long sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (sum + arr[i] <= time) {
+                sum += arr[i];
+            } else {
+                painters++;
+                sum = arr[i];
+            }
+        }
+        return painters;
+    }
+
+    public static int paintersPartition(int[] arr, int k) {
+        int low = arr[0];
+        int high = 0;
+        for (int i = 0; i < arr.length; i++) {
+            low = Math.max(arr[i], low);
+            high += arr[i];
+        }
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int painters = countPainters(arr, mid);
+            if (painters > k) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
