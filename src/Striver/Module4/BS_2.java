@@ -3,6 +3,7 @@ package Striver.Module4;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class BS_2 {
     public static void main(String[] args) {
@@ -17,6 +18,7 @@ public class BS_2 {
         System.out.println(findPages(new ArrayList<>(Arrays.asList(25, 46, 28, 49, 24)), 5, 4));
         System.out.println(findMinimizedLargestSum(new int[] { 1, 2, 3, 4, 5 }, 3));
         System.out.println(paintersPartition(new int[] { 10, 20, 30, 40 }, 2));
+        System.out.println(median(new int[] { 1, 4, 7, 10, 12 }, new int[] { 2, 3, 6, 15 }));
     }
 
     public static long findSquareRoot(long n) {
@@ -344,5 +346,33 @@ public class BS_2 {
             }
         }
         return low;
+    }
+
+    public static double median(int[] a, int[] b) {
+        int n1 = a.length;
+        int n2 = b.length;
+
+        List<Integer> arr3 = new ArrayList<>();
+        int i = 0, j = 0;
+        while (i < n1 && j < n2) {
+            if (a[i] < b[j]) {
+                arr3.add(a[i++]);
+            } else {
+                arr3.add(b[j++]);
+            }
+        }
+        while (i < n1) {
+            arr3.add(a[i++]);
+        }
+        while (j < n2) {
+            arr3.add(b[j++]);
+        }
+
+        int n = n1 + n2;
+        if (n % 2 == 1) {
+            return (double) arr3.get(n / 2);
+        }
+
+        return ((double) arr3.get(n / 2) + (double) arr3.get((n / 2) - 1)) / 2.0;
     }
 }
