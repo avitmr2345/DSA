@@ -6,6 +6,9 @@ public class BS_2D {
         System.out.println(findRowWithMaxOne(arr));
         int[][] arr2 = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 } };
         System.out.println(findElement(arr2, 8));
+        int[][] arr3 = { { 1, 4, 7, 11, 15 }, { 2, 5, 8, 12, 19 }, { 3, 6, 9, 16, 22 }, { 10, 13, 14, 17, 24 },
+                { 18, 21, 23, 26, 30 } };
+        System.out.println(searchElement(arr3, 14));
     }
 
     public static int findRowWithMaxOne(int[][] arr) {
@@ -38,6 +41,22 @@ public class BS_2D {
             } else {
                 e = mid - 1;
             }
+        }
+        return false;
+    }
+
+    public static boolean searchElement(int[][] arr, int target) {
+        int n = arr.length;
+        int m = arr[0].length;
+
+        int row = 0, col = m - 1;
+        while (row < n && col >= 0) {
+            if (arr[row][col] == target)
+                return true;
+            else if (arr[row][col] < target)
+                row++;
+            else
+                col--;
         }
         return false;
     }
