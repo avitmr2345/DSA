@@ -1,6 +1,9 @@
 package Striver.Module4;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class BS_2D {
     public static void main(String[] args) {
@@ -13,6 +16,8 @@ public class BS_2D {
         System.out.println(searchElement(arr3, 14));
         int[][] arr4 = { { 10, 20, 15 }, { 21, 30, 14 }, { 7, 16, 32 } };
         System.out.println(Arrays.toString(findPeakGrid(arr4)));
+        int[][] arr5 = { { 1, 2, 3, 4, 5 }, { 8, 9, 11, 12, 13 }, { 21, 23, 25, 27, 29 } };
+        System.out.println(median(arr5, arr5.length, arr5[0].length));
     }
 
     public static int findRowWithMaxOne(int[][] arr) {
@@ -92,5 +97,18 @@ public class BS_2D {
             }
         }
         return new int[] { -1, -1 };
+    }
+
+    public static int median(int[][] array, int m, int n) {
+        List<Integer> arr = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                arr.add(array[i][j]);
+            }
+        }
+        Collections.sort(arr);
+
+        return arr.get((m * n) / 2);
     }
 }
