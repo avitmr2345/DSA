@@ -1,5 +1,7 @@
 package Striver.Module4;
 
+import java.util.Arrays;
+
 public class BS_2D {
     public static void main(String[] args) {
         int[][] arr = { { 1, 1, 1 }, { 0, 0, 1 }, { 0, 0, 0 } };
@@ -9,6 +11,8 @@ public class BS_2D {
         int[][] arr3 = { { 1, 4, 7, 11, 15 }, { 2, 5, 8, 12, 19 }, { 3, 6, 9, 16, 22 }, { 10, 13, 14, 17, 24 },
                 { 18, 21, 23, 26, 30 } };
         System.out.println(searchElement(arr3, 14));
+        int[][] arr4 = { { 10, 20, 15 }, { 21, 30, 14 }, { 7, 16, 32 } };
+        System.out.println(Arrays.toString(findPeakGrid(arr4)));
     }
 
     public static int findRowWithMaxOne(int[][] arr) {
@@ -59,5 +63,34 @@ public class BS_2D {
                 col--;
         }
         return false;
+    }
+
+    public static int[] findPeakGrid(int[][] mat) {
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                if (j - 1 >= 0) {
+                    if (mat[i][j - 1] > mat[i][j]) {
+                        continue;
+                    }
+                }
+                if (j + 1 < mat[0].length) {
+                    if (mat[i][j + 1] > mat[i][j]) {
+                        continue;
+                    }
+                }
+                if (i - 1 >= 0) {
+                    if (mat[i - 1][j] > mat[i][j]) {
+                        continue;
+                    }
+                }
+                if (i + 1 < mat.length) {
+                    if (mat[i + 1][j] > mat[i][j]) {
+                        continue;
+                    }
+                }
+                return new int[] { i, j };
+            }
+        }
+        return new int[] { -1, -1 };
     }
 }
