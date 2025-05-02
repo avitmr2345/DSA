@@ -21,11 +21,20 @@ public class BasicMaths {
 
     static int reverseNum(int n) {
         int reversedNum = 0;
-        int lastDigit = 0;
-        while (n > 0) {
-            lastDigit = n % 10;
-            reversedNum = (reversedNum * 10) + lastDigit;
+        while (n != 0) {
+            int lastDigit = n % 10;
             n = n / 10;
+
+            if (reversedNum > Integer.MAX_VALUE / 10 ||
+                    (reversedNum == Integer.MAX_VALUE / 10 && lastDigit > 7)) {
+                return 0;
+            }
+            if (reversedNum < Integer.MIN_VALUE / 10 ||
+                    (reversedNum == Integer.MIN_VALUE / 10 && lastDigit < -8)) {
+                return 0;
+            }
+
+            reversedNum = reversedNum * 10 + lastDigit;
         }
         return reversedNum;
     }
