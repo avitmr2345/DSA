@@ -4,6 +4,7 @@ class StringsEasy {
 
     public static void main(String[] args) {
         System.out.println(removeOuterParentheses("((()())(()()))"));
+        System.out.println(reverseWords("a good   example"));
     }
 
     public static String removeOuterParentheses(String s) { // *
@@ -23,6 +24,18 @@ class StringsEasy {
                 if (flag > 1)
                     result.append(')');
                 flag--;
+            }
+        }
+        return result.toString();
+    }
+
+    public static String reverseWords(String s) {
+        StringBuilder result = new StringBuilder();
+        String[] arr = s.trim().split("\\s+");
+        for (int i = arr.length - 1; i >= 0; i--) {
+            result.append(arr[i]);
+            if (i > 0) {
+                result.append(" ");
             }
         }
         return result.toString();
