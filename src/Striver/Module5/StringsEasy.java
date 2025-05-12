@@ -5,6 +5,7 @@ class StringsEasy {
     public static void main(String[] args) {
         System.out.println(removeOuterParentheses("((()())(()()))"));
         System.out.println(reverseWords("a good   example"));
+        System.out.println(largestOddNumber("23953767242388496965328710"));
     }
 
     public static String removeOuterParentheses(String s) { // *
@@ -39,5 +40,16 @@ class StringsEasy {
             }
         }
         return result.toString();
+    }
+
+    public static String largestOddNumber(String num) {
+        for (int i = num.length() - 1; i > 0; i--) {
+            int n = Character.getNumericValue(num.charAt(i));
+            if (n % 2 != 0) {
+                return num;
+            }
+            num = num.substring(0, i);
+        }
+        return "";
     }
 }
