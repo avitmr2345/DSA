@@ -11,6 +11,7 @@ class StringsEasy {
         String[] arr1 = { "flower", "flow", "flight" };
         System.out.println(longestCommonPrefix(arr1));
         System.out.println(isIsomorphic("foo", "bar"));
+        System.out.println(rotateString("defdefdefabcabc", "defdefabcabcdef"));
     }
 
     public static String removeOuterParentheses(String s) { // *
@@ -87,5 +88,34 @@ class StringsEasy {
             map2[t.charAt(i)] = i + 1;
         }
         return true;
+    }
+
+    public static boolean rotateString(String s, String goal) {
+        int len = s.length();
+        StringBuilder result = new StringBuilder();
+
+        if (s.equals(goal)) {
+            return true;
+        }
+
+        for (int i = 0; i < len - 1; i++) {
+            char first = s.charAt(0);
+            result.setLength(0);
+
+            for (int j = 1; j < len; j++) {
+                result.append(s.charAt(j));
+            }
+            result.append(first);
+
+            if (goal.equals(result.toString())) {
+                return true;
+            }
+            s = result.toString();
+        }
+        return false;
+
+        // Better time complexity solution:
+        // if(s.length() != goal.length()) return false;
+        // return (s+s).contains(goal);
     }
 }
