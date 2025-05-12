@@ -12,6 +12,7 @@ class StringsEasy {
         System.out.println(longestCommonPrefix(arr1));
         System.out.println(isIsomorphic("foo", "bar"));
         System.out.println(rotateString("defdefdefabcabc", "defdefabcabcdef"));
+        System.out.println(isAnagram("anagram", "nagaram"));
     }
 
     public static String removeOuterParentheses(String s) { // *
@@ -117,5 +118,29 @@ class StringsEasy {
         // Better time complexity solution:
         // if(s.length() != goal.length()) return false;
         // return (s+s).contains(goal);
+    }
+
+    public static boolean isAnagram(String s, String t) {
+        if (s.length() != t.length())
+            return false;
+
+        s = s.toLowerCase();
+        t = t.toLowerCase();
+
+        int[] freq = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            freq[s.charAt(i) - 97]++;
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            freq[t.charAt(i) - 97]--;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (freq[i] != 0)
+                return false;
+        }
+        return true;
     }
 }
