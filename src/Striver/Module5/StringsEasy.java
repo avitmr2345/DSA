@@ -1,11 +1,15 @@
 package Striver.Module5;
 
+import java.util.Arrays;
+
 class StringsEasy {
 
     public static void main(String[] args) {
         System.out.println(removeOuterParentheses("((()())(()()))"));
         System.out.println(reverseWords("a good   example"));
         System.out.println(largestOddNumber("23953767242388496965328710"));
+        String[] arr1 = { "flower", "flow", "flight" };
+        System.out.println(longestCommonPrefix(arr1));
     }
 
     public static String removeOuterParentheses(String s) { // *
@@ -51,5 +55,19 @@ class StringsEasy {
             num = num.substring(0, i);
         }
         return "";
+    }
+
+    public static String longestCommonPrefix(String[] strs) {
+        StringBuilder ans = new StringBuilder();
+        Arrays.sort(strs);
+        String first = strs[0];
+        String last = strs[strs.length - 1];
+        for (int i = 0; i < first.length(); i++) {
+            if (first.charAt(i) != last.charAt(i)) {
+                return ans.toString();
+            }
+            ans.append(first.charAt(i));
+        }
+        return ans.toString();
     }
 }
