@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StringsMedium {
 
     public static void main(String[] args) {
         System.out.println(frequencySort("Aabb"));
         System.out.println(maxDepth("(1+(2*3)+((8)/4))+1"));
+        System.out.println(romanToInt("MCMXCIV"));
     }
 
     public static String frequencySort(String s) { // *
@@ -42,5 +44,26 @@ public class StringsMedium {
             max = Math.max(max, count);
         }
         return max;
+    }
+
+    public static int romanToInt(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int ans = 0;
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+
+        for (int i = 0; i < s.length(); i++) {
+            if (i < s.length() - 1 && map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                ans -= map.get(s.charAt(i));
+            } else {
+                ans += map.get(s.charAt(i));
+            }
+        }
+        return ans;
     }
 }
