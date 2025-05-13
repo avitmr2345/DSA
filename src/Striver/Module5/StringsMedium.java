@@ -9,6 +9,7 @@ public class StringsMedium {
 
     public static void main(String[] args) {
         System.out.println(frequencySort("Aabb"));
+        System.out.println(maxDepth("(1+(2*3)+((8)/4))+1"));
     }
 
     public static String frequencySort(String s) { // *
@@ -27,5 +28,19 @@ public class StringsMedium {
             }
         }
         return sb.toString();
+    }
+
+    public static int maxDepth(String s) {
+        int count = 0;
+        int max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                count++;
+            } else if (s.charAt(i) == ')') {
+                count--;
+            }
+            max = Math.max(max, count);
+        }
+        return max;
     }
 }
