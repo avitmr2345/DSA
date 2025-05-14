@@ -14,6 +14,7 @@ public class StringsMedium {
         System.out.println(romanToInt("MCMXCIV"));
         System.out.println(myAtoi("  0000000000012345678"));
         System.out.println(longestPalindrome("abba"));
+        System.out.println(beautySum("aabcb"));
     }
 
     public static String frequencySort(String s) { // *
@@ -123,7 +124,7 @@ public class StringsMedium {
         return Integer.parseInt(numStr);
     }
 
-    public static String longestPalindrome(String s) {
+    public static String longestPalindrome(String s) { // *
         if (s.length() <= 1) {
             return s;
         }
@@ -151,5 +152,26 @@ public class StringsMedium {
             right++;
         }
         return s.substring(left + 1, right);
+    }
+
+    public static int beautySum(String s) { // *
+        int ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int[] freq = new int[26];
+            for (int j = i; j < s.length(); j++) {
+                char ch = s.charAt(j);
+                freq[ch - 'a']++;
+                int max = Integer.MIN_VALUE;
+                int min = Integer.MAX_VALUE;
+                for (int k = 0; k < 26; k++) {
+                    if (freq[k] > 0) {
+                        min = Math.min(min, freq[k]);
+                        max = Math.max(max, freq[k]);
+                    }
+                }
+                ans += max - min;
+            }
+        }
+        return ans;
     }
 }
