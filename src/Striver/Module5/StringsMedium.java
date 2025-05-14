@@ -13,6 +13,7 @@ public class StringsMedium {
         System.out.println(maxDepth("(1+(2*3)+((8)/4))+1"));
         System.out.println(romanToInt("MCMXCIV"));
         System.out.println(myAtoi("  0000000000012345678"));
+        System.out.println(longestPalindrome("abba"));
     }
 
     public static String frequencySort(String s) { // *
@@ -120,5 +121,35 @@ public class StringsMedium {
             }
         }
         return Integer.parseInt(numStr);
+    }
+
+    public static String longestPalindrome(String s) {
+        if (s.length() <= 1) {
+            return s;
+        }
+
+        String maxStr = s.substring(0, 1);
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            String odd = expandFromCenter(s, i, i);
+            String even = expandFromCenter(s, i, i + 1);
+
+            if (odd.length() > maxStr.length()) {
+                maxStr = odd;
+            }
+            if (even.length() > maxStr.length()) {
+                maxStr = even;
+            }
+        }
+
+        return maxStr;
+    }
+
+    private static String expandFromCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return s.substring(left + 1, right);
     }
 }
