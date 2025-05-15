@@ -2,8 +2,8 @@ package Striver.Module6;
 
 public class CustomLinkedList {
 
-    private Node head;
-    private Node tail;
+    private static Node head;
+    private static Node tail;
     private int size;
 
     public CustomLinkedList() {
@@ -163,7 +163,9 @@ public class CustomLinkedList {
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
+        list.insertLast(6);
         list.display();
+        middleNode(head);
         list.insert(100, 3);
         list.display();
         System.out.println(list.deleteFirst());
@@ -172,5 +174,24 @@ public class CustomLinkedList {
         list.display();
         System.out.println(list.delete(2));
         list.display();
+    }
+
+    public static void middleNode(Node head) {
+        int length = 0;
+        Node temp = head;
+        while (temp != null) {
+            length++;
+            temp = temp.next;
+        }
+
+        for (int i = 0; i < length / 2; i++) {
+            head = head.next;
+        }
+        temp = head;
+        for (int i = length / 2; i < length; i++) {
+            System.out.print(temp.value + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("END");
     }
 }
