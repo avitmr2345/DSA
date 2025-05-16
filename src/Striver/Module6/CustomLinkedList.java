@@ -176,6 +176,7 @@ public class CustomLinkedList {
         list.display();
         list.reverse();
         list.display();
+        System.out.println(list.hasCycle(head));
     }
 
     // reverse using recursion
@@ -210,6 +211,22 @@ public class CustomLinkedList {
             }
         }
         head = prev;
+    }
+
+    // for questions like cycle detection and finding a node in a cycle try to use
+    // fast and slow pointer
+    public boolean hasCycle(Node head) {
+        Node fast = head;
+        Node slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
