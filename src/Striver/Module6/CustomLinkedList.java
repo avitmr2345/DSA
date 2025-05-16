@@ -1,7 +1,5 @@
 package Striver.Module6;
 
-import Striver.Module6.LinkedListMedium.ListNode;
-
 public class CustomLinkedList {
 
     private static Node head;
@@ -231,16 +229,16 @@ public class CustomLinkedList {
         return false;
     }
 
-    public int lengthCycle(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
+    public int lengthCycle(Node head) {
+        Node fast = head;
+        Node slow = head;
 
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow) {
                 // calculate the length
-                ListNode temp = slow;
+                Node temp = slow;
                 int length = 0;
                 do {
                     temp = temp.next;
@@ -252,11 +250,11 @@ public class CustomLinkedList {
         return 0;
     }
 
-    public ListNode detectCyclePosition(ListNode head) {
+    public Node detectCyclePosition(Node head) {
         int length = 0;
 
-        ListNode fast = head;
-        ListNode slow = head;
+        Node fast = head;
+        Node slow = head;
 
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
@@ -273,8 +271,8 @@ public class CustomLinkedList {
 
         // place the second pointer s at length position, from where the f and s are at
         // equal distance
-        ListNode f = head;
-        ListNode s = head;
+        Node f = head;
+        Node s = head;
 
         while (length > 0) {
             s = s.next;
