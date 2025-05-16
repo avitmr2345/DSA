@@ -174,6 +174,8 @@ public class CustomLinkedList {
         list.display();
         CustomLinkedList.head = list.reverseList(head);
         list.display();
+        list.reverse();
+        list.display();
     }
 
     // reverse using recursion
@@ -188,4 +190,26 @@ public class CustomLinkedList {
 
         return newHead;
     }
+
+    // iterative reverse
+    public void reverse() {
+        if (size < 2) {
+            return;
+        }
+
+        Node prev = null;
+        Node present = head;
+        Node next = present.next;
+
+        while (present != null) {
+            present.next = prev;
+            prev = present;
+            present = next;
+            if (next != null) {
+                next = next.next;
+            }
+        }
+        head = prev;
+    }
+
 }
