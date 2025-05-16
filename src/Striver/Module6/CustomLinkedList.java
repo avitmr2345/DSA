@@ -1,5 +1,7 @@
 package Striver.Module6;
 
+import Striver.Module6.LinkedListMedium.ListNode;
+
 public class CustomLinkedList {
 
     private static Node head;
@@ -229,4 +231,24 @@ public class CustomLinkedList {
         return false;
     }
 
+    public int lengthCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                // calculate the length
+                ListNode temp = slow;
+                int length = 0;
+                do {
+                    temp = temp.next;
+                    length++;
+                } while (temp != slow);
+                return length;
+            }
+        }
+        return 0;
+    }
 }
