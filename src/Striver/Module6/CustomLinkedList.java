@@ -2,8 +2,8 @@ package Striver.Module6;
 
 public class CustomLinkedList {
 
-    private Node head;
-    private Node tail;
+    private static Node head;
+    private static Node tail;
     private int size;
 
     public CustomLinkedList() {
@@ -172,5 +172,20 @@ public class CustomLinkedList {
         list.display();
         System.out.println(list.delete(2));
         list.display();
+        CustomLinkedList.head = list.reverseList(head);
+        list.display();
+    }
+
+    // reverse using recursion
+    public Node reverseList(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
     }
 }
