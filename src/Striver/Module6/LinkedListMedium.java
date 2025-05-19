@@ -278,4 +278,44 @@ public class LinkedListMedium {
         midPrev.next = null;
         return mid;
     }
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lenA = getLength(headA);
+        int lenB = getLength(headB);
+
+        int diff = Math.abs(lenA - lenB);
+
+        if (lenA > lenB) {
+            headA = moveAheadBy(headA, diff);
+        } else {
+            headB = moveAheadBy(headB, diff);
+        }
+
+        while (headA != null && headB != null) {
+            if (headA == headB) {
+                return headA;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+
+        return null;
+    }
+
+    private int getLength(ListNode node) {
+        int length = 0;
+        while (node != null) {
+            length++;
+            node = node.next;
+        }
+        return length;
+    }
+
+    private ListNode moveAheadBy(ListNode node, int steps) {
+        while (steps > 0 && node != null) {
+            node = node.next;
+            steps--;
+        }
+        return node;
+    }
 }
