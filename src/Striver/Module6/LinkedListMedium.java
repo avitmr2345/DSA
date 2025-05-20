@@ -318,4 +318,25 @@ public class LinkedListMedium {
         }
         return node;
     }
+
+    public ListNode addOne(ListNode head) {
+        int carry = addOneRecursive(head);
+        if (carry > 0) {
+            ListNode newHead = new ListNode(carry);
+            newHead.next = head;
+            return newHead;
+        }
+        return head;
+    }
+
+    private int addOneRecursive(ListNode head) {
+        if (head == null) {
+            return 1;
+        }
+
+        int carry = addOneRecursive(head.next);
+        int sum = head.val + carry;
+        head.val = sum % 10;
+        return sum / 10;
+    }
 }
