@@ -104,23 +104,18 @@ public class CustomDoublyLinkedList {
         // list.insertFirst(1);
         list.insertLast(1);
         list.insertLast(1);
-        list.insertLast(2);
         list.insertLast(3);
-        list.insertLast(1);
-        list.insertLast(1);
-        list.insertLast(1);
+        list.insertLast(3);
         list.insertLast(4);
-        list.insertLast(1);
-        list.insertLast(2);
-        list.insertLast(1);
-        list.insertLast(1);
-        list.insertLast(1);
+        list.insertLast(5);
         // list.insert(5, 65);
         list.display();
-        head = list.deleteAllOccurrences(head, 1);
-        if (head != null) {
-            list.display();
-        }
+        // head = list.deleteAllOccurrences(head, 1);
+        // if (head != null) {
+        // list.display();
+        // }
+        head = list.removeDuplicates(head);
+        list.display();
     }
 
     public Node deleteAllOccurrences(Node head, int target) {
@@ -149,6 +144,26 @@ public class CustomDoublyLinkedList {
                 }
 
             }
+            curr = curr.next;
+        }
+
+        return head;
+    }
+
+    public Node removeDuplicates(Node head) {
+        Node curr = head;
+
+        while (curr != null && curr.next != null) {
+
+            if (curr.val == curr.next.val) {
+                Node nextNode = curr.next.next;
+                curr.next = nextNode;
+
+                if (nextNode != null) {
+                    nextNode.prev = curr;
+                }
+            }
+
             curr = curr.next;
         }
 

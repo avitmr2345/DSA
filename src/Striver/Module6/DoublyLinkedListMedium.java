@@ -53,4 +53,23 @@ public class DoublyLinkedListMedium {
         return head;
     }
 
+    public ListNode removeDuplicates(ListNode head) {
+        ListNode curr = head;
+
+        while (curr != null && curr.next != null) {
+
+            if (curr.val == curr.next.val) {
+                ListNode nextNode = curr.next.next;
+                curr.next = nextNode;
+
+                if (nextNode != null) {
+                    nextNode.prev = curr;
+                }
+            }
+
+            curr = curr.next;
+        }
+
+        return head;
+    }
 }
