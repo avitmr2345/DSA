@@ -1,7 +1,7 @@
 package Striver.Module6;
 
 public class CustomDoublyLinkedList {
-    private Node head;
+    private static Node head;
 
     public void insertFirst(int val) {
         Node node = new Node(val);
@@ -77,6 +77,7 @@ public class CustomDoublyLinkedList {
             last = last.prev;
         }
         System.out.println("START");
+        System.out.println();
     }
 
     private class Node {
@@ -97,12 +98,60 @@ public class CustomDoublyLinkedList {
 
     public static void main(String[] args) {
         CustomDoublyLinkedList list = new CustomDoublyLinkedList();
-        list.insertFirst(4);
-        list.insertFirst(3);
-        list.insertFirst(2);
-        list.insertFirst(1);
-        list.insertLast(5);
-        list.insert(5, 65);
+        // list.insertFirst(4);
+        // list.insertFirst(3);
+        // list.insertFirst(2);
+        // list.insertFirst(1);
+        list.insertLast(1);
+        list.insertLast(1);
+        list.insertLast(2);
+        list.insertLast(3);
+        list.insertLast(1);
+        list.insertLast(1);
+        list.insertLast(1);
+        list.insertLast(4);
+        list.insertLast(1);
+        list.insertLast(2);
+        list.insertLast(1);
+        list.insertLast(1);
+        list.insertLast(1);
+        // list.insert(5, 65);
         list.display();
+        head = list.deleteAllOccurrences(head, 1);
+        if (head != null) {
+            list.display();
+        }
+    }
+
+    public Node deleteAllOccurrences(Node head, int target) {
+        while (head != null && head.val == target) {
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            }
+        }
+
+        if (head == null) {
+            return null;
+        }
+
+        Node curr = head;
+
+        while (curr != null) {
+            if (curr.val == target) {
+
+                if (curr.prev != null) {
+                    curr.prev.next = curr.next;
+                }
+
+                if (curr.next != null) {
+                    curr.next.prev = curr.prev;
+                }
+
+            }
+            curr = curr.next;
+        }
+
+        return head;
     }
 }
