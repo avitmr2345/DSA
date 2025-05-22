@@ -35,13 +35,13 @@ public class BST {
         // preorderHelper(root.right, array);
 
         // in order traversal (LNR), gives sorted order of Binary Search Tree
-        preorderHelper(root.left, array);
-        array.add(root.val);
-        preorderHelper(root.right, array);
+        // preorderHelper(root.left, array);
+        // array.add(root.val);
+        // preorderHelper(root.right, array);
 
         // post order traversal (LRN), used for deleting the tree
-        // preorderHelper(root.left, array);
-        // preorderHelper(root.right, array);
-        // array.add(root.val);
+        preorderHelper(root.left, array);
+        preorderHelper(root.right, array);
+        array.add(root.val);
     }
 }
