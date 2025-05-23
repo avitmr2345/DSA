@@ -13,36 +13,48 @@ public class ArraysMedium {
         int[] arr = { 2, 6, 5, 8, 11 };
         int target = 14;
         System.out.println(Arrays.toString(twoSum(arr, target)));
+
         ArrayList<Integer> arr2 = new ArrayList<>(Arrays.asList(new Integer[] { 0, 2, 1, 2, 0, 1 }));
         sortArray(arr2);
         System.out.println(arr2);
+
         int[] arr3 = { 2, 2, 1, 1, 1, 2, 2 };
         System.out.println("The majority element is: " + majorityElement(arr3));
+
         int[] arr4 = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
         System.out.println("The maximum subarray sum is: " + maxSubarraySum(arr4, arr4.length));
+
         int[] profit = { 7, 1, 5, 3, 6, 4 };
         maxProfit(profit);
+
         ArrayList<Integer> arr5 = new ArrayList<>(Arrays.asList(1, 2, -4, -5));
         System.out.println(rearrangeBySign(arr5));
+
         List<Integer> arr6 = Arrays.asList(new Integer[] { 1, 3, 2 });
         System.out.println(nextGreaterPermutation(arr6));
+
         int[] arr7 = { 10, 22, 12, 3, 0, 6 };
         ArrayList<Integer> ans = printLeaders(arr7, arr7.length);
         Collections.sort(ans, Collections.reverseOrder());
         System.out.println(ans);
+
         int[] arr8 = { 100, 200, 1, 2, 3, 4 };
         System.out.println(longestSuccessiveElements(arr8));
+
         ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
         matrix.add(new ArrayList<>(Arrays.asList(1, 1, 1)));
-        matrix.add(new ArrayList<>(Arrays.asList(1, 0, 1)));
+        matrix.add(new ArrayList<>(Arrays.asList(0, 0, 1)));
         matrix.add(new ArrayList<>(Arrays.asList(1, 1, 1)));
         ArrayList<ArrayList<Integer>> result = zeroMatrix(matrix, matrix.size(), matrix.get(0).size());
         System.out.println(result);
+
         int arr9[][] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
         rotate(arr9);
         System.out.println(Arrays.deepToString(arr9));
+
         int[][] arr10 = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
         System.out.println(printSpiral(arr10));
+
         int[] arr11 = { 3, 1, 2, 4 };
         System.out.println(findAllSubarraysWithGivenSum(arr11, 6));
     }
