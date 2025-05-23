@@ -2,6 +2,7 @@ package Striver.Module3;
 
 import java.util.ArrayList;
 // import java.util.HashMap;
+import java.util.Arrays;
 
 public class ArraysEasy {
 
@@ -19,6 +20,8 @@ public class ArraysEasy {
         System.out.println("The single element present in array is: " + getSingleElement(arr5));
         int[] arr6 = { 2, 3, 5, 1, 9 };
         System.out.println("The longest subarray size is: " + longestSubarraySum(arr6, 10));
+        int[] arr7 = { -5, 1, 2, 1, 1, 2, 3, 4, 4, 5, 24, 6, 2, 4 };
+        removeDuplicatesAndSort(arr7);
     }
 
     public static void secondLargestSecondSmallest(int[] arr) {
@@ -161,5 +164,33 @@ public class ArraysEasy {
                 sum += arr[right];
         }
         return maxLen;
+    }
+
+    public static void removeDuplicatesAndSort(int[] arr) {
+
+        int max = Arrays.stream(arr).max().getAsInt();
+        int min = Arrays.stream(arr).min().getAsInt();
+
+        int[] countArray = new int[max - min + 1];
+
+        for (int num : arr) {
+            countArray[num - min] = 1;
+        }
+
+        int uniqueCount = 0;
+        for (int i : countArray) {
+            if (i > 0) {
+                uniqueCount++;
+            }
+        }
+        int[] resultArray = new int[uniqueCount];
+        int index = 0;
+        for (int i = 0; i < countArray.length; i++) {
+            if (countArray[i] == 1) {
+                resultArray[index++] = i + min;
+            }
+        }
+
+        System.out.println(Arrays.toString(resultArray));
     }
 }
