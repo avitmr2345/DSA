@@ -1,6 +1,7 @@
 package Striver.Module3;
 
 import java.util.ArrayList;
+// import java.util.HashMap;
 
 public class ArraysEasy {
 
@@ -121,6 +122,21 @@ public class ArraysEasy {
             xor = xor ^ arr[i]; // a ^ a = 0 and 0 ^ a = a
         }
         return xor;
+
+        // another approach
+        // HashMap<Integer, Integer> map = new HashMap<>();
+
+        // for (int i = 0; i < arr.length; i++) {
+        // map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        // }
+
+        // for (int key : map.keySet()) {
+        // if (map.get(key) == 1) {
+        // return key;
+        // }
+        // }
+
+        // return -1;
     }
 
     private static int longestSubarraySum(int[] arr, long k) {
