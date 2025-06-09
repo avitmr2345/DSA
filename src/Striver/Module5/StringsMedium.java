@@ -70,7 +70,7 @@ public class StringsMedium {
         return ans;
     }
 
-    public static int myAtoi(String s) {
+    public static int myAtoi(String s) { // *
         StringBuilder sb = new StringBuilder();
         int index = 0;
         s = s.trim();
@@ -88,9 +88,7 @@ public class StringsMedium {
         for (int i = index; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch == '0') {
-                if (sb.length() == 1 && sb.charAt(0) == '-') {
-                    continue;
-                } else if (sb.length() == 0) {
+                if ((sb.length() == 1 && sb.charAt(0) == '-') || sb.length() == 0) {
                     continue;
                 } else {
                     sb.append(ch);
